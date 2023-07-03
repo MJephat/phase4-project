@@ -5,7 +5,7 @@ from random import randint, choice as rc
 from faker import Faker
 
 from app import app
-from models import db, Restaurant, Pizza 
+from models import db, Hotel, Traveller, Activity 
 
 # flavors = [
 #     "pepperoni",
@@ -46,7 +46,7 @@ with app.app_context():
 
     travellers = []
     for i in range (34):
-        p = traveller(
+        p = Traveller(
             name = fake.name(),
             gender = fake.gender(),
             email = fake.email(),
@@ -59,7 +59,7 @@ with app.app_context():
 
     activities = []
     for i in range (10):
-        a = activity(
+        a = Activity(
             name = fake.name(),
             description = fake.description(),
             time = fake.time(),
