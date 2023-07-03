@@ -45,10 +45,12 @@ with app.app_context():
     db.session.add_all(hotels)
 
     travellers = []
+    genders = ['Male', 'Female']
+
     for i in range (34):
         p = Traveller(
             name = fake.name(),
-            gender = fake.gender(),
+            gender = fake.random_element(elements=genders),
             email = fake.email(),
             date = fake.date(),
             # ingridient =rc(ingredients),
@@ -61,7 +63,7 @@ with app.app_context():
     for i in range (10):
         a = Activity(
             name = fake.name(),
-            description = fake.description(),
+            description = fake.sentence(),
             time = fake.time(),
 
         )

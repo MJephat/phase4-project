@@ -5,42 +5,42 @@ from flask_migrate import Migrate
 
 from models import db, Hotel, Traveller, Activity
 
-def create_app():
-    app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///travel.db'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-    migrate = Migrate(app, db)
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-    db.init_app(app)
+migrate = Migrate(app, db)
+
+db.init_app(app)
 
     # @app.route('/hotels')
     # def ho():
     #     return ''
     
-    @app.route('/hotels', methods=['GET'])
-    def get_hotels():
-        hotels = Hotel.query.all()
-        data = [
-            {
-                'id': hotels.id,
-                'name': hotels.name,
-                'address': hotels.address
-            }
-            for hotel in hotels
-        ]
-        return jsonify(data)
-    
-    @app.route('/hotels/<int:id>', methods=['GET'])
-    def get_hotel(id):
-        hotels = Hotel.query.get(id)
-        if hotels is None:
-            return jsonify({'error': 'Hotel not found'}), 404
-        
-        data = {
+@app.route('/hotels', methods=['GET'])
+def get_hotels():
+    hotels = Hotel.query.all()
+    data = [
+        {
             'id': hotels.id,
             'name': hotels.name,
-            'address': hotels.address,
+            'address': hotels.address
+        }
+        for hotel in hotels
+        ]
+    return jsonify(data)
+    
+@app.route('/hotels/<int:id>', methods=['GET'])
+def get_hotel(id):
+    hotels = Hotel.query.get(id)
+    if hotels is None:
+        return jsonify({'error': 'Hotel not found'}), 404
+        
+    data = {
+        'id': hotels.id,
+        'name': hotels.name,
+        'address': hotels.address,
             # 'pizzas': [
             #     {
             #         'id': pizza.id,
@@ -49,13 +49,13 @@ def create_app():
             #     for pizza in restaurant.pizzas
             # ]
         }
-        return jsonify(data)
+    return jsonify(data)
     
-    @app.route('/hotels/<int:id>', methods=['DELETE'])
-    def delete_hotel(id):
-        hotels = Hotel.query.get(id)
-        if hotels is None:
-            return jsonify({'error': 'Hotel not found'}), 404
+@app.route('/hotels/<int:id>', methods=['DELETE'])
+def delete_hotel(id):
+    hotels = Hotel.query.get(id)
+    if hotels is None:
+        return jsonify({'error': 'Hotel not found'}), 404
         
         # RestaurantPizza.query.filter_by(restaurant_id=id).delete()
         # db.session.delete(restaurant)
@@ -63,46 +63,46 @@ def create_app():
 
         # return make_response('', 204)
     
-    @app.route('/travellers', methods=['GET'])
-    def get_traveller():
-        travellers = Traveller.query.all()
-        data = [
-            {
-                'id': travellers.id,
-                'name': travellers.name,
-                'gender': travellers.gender,
-                'date': travellers.date
-            }
-            for traveller in travellers
-        ]
-        return jsonify(data)
+@app.route('/travellers', methods=['GET'])
+def get_traveller():
+    travellers = Traveller.query.all()
+    data = [
+        {
+            'id': travellers.id,
+            'name': travellers.name,
+            'gender': travellers.gender,
+            'date': travellers.date
+        }
+        for traveller in travellers
+    ]
+    return jsonify(data)
     
-    @app.route('/travellers/<int:id>', methods=['DELETE'])
-    def delete_traveller(id):
-        travellers = Traveller.query.get(id)
-        if travellers is None:
-            return jsonify({'error': 'Traveller not found'}), 404
+@app.route('/travellers/<int:id>', methods=['DELETE'])
+def delete_traveller(id):
+    travellers = Traveller.query.get(id)
+    if travellers is None:
+        return jsonify({'error': 'Traveller not found'}), 404
     
 
-    @app.route('/activities', methods=['GET'])
-    def get_activity():
-        activities = Activity.query.all()
-        data = [
-            {
-                'id': activities.id,
-                'name': activities.name,
-                'description': activities.description,
-                'time': activities.time
-            }
-            for activity in activities
+@app.route('/activities', methods=['GET'])
+def get_activity():
+    activities = Activity.query.all()
+    data = [
+        {
+            'id': activities.id,
+            'name': activities.name,
+            'description': activities.description,
+            'time': activities.time
+        }
+        for activity in activities
         ]
-        return jsonify(data)
+    return jsonify(data)
     
-    @app.route('/activities/<int:id>', methods=['DELETE'])
-    def delete_activity(id):
-        activities = Activity.query.get(id)
-        if activities is None:
-            return jsonify({'error': 'Activity not found'}), 404
+@app.route('/activities/<int:id>', methods=['DELETE'])
+def delete_activity(id):
+    activities = Activity.query.get(id)
+    if activities is None:
+        return jsonify({'error': 'Activity not found'}), 404
     
     # @app.route('/restaurant_pizzas', method=['POST'])
     # def create_restaurant_pizza():
@@ -136,5 +136,4 @@ def create_app():
 
 
 if __name__ == '__main__':
-    app = create_app()
     app.run(port=5555)
