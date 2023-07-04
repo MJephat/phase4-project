@@ -6,27 +6,8 @@ from faker import Faker
 
 from app import app
 
+
 from models import db, Hotel, Traveller, Activity 
-
-# flavors = [
-#     "pepperoni",
-#     "cheese",
-#     "chicken",
-#     "meat",
-#     "margherita",
-# ]
-
-# ingredients = [
-#     " Dough, Tomato Sauce, Cheese",
-#     "Tomato, Dough, Tomato Sauce, Cheese",
-#     "Sauce, Dough, Tomato Sauce, Cheese, Pepperoni",   
-#     "Meat, Dough, Tomato Sauce, Cheese, Pepperoni",
-#     "Buffalo, Dough, Tomato Sauce, Cheese, Pepperoni",
-#     " Dough, Tomato Sauce, Cheese, Pepperoni,Chicken",
-#     "margherita, Dough, Tomato Sauce, butter, Pepperoni",
-#     "Dough, Tomato Sauce, Cheese, Pepperoni, cheese",
-    
-# ]
 
 fake = Faker()
 
@@ -37,13 +18,6 @@ with app.app_context():
     Activity.query.delete()
     # Review.query.delete()
 
-    hotels = []
-    for i in range (10):
-        r = Hotel(
-            name =fake.name(),
-            address =fake.address(),)
-        hotels.append(r)
-    db.session.add_all(hotels)
 
     travellers = []
     genders = ['Male', 'Female']
@@ -70,4 +44,21 @@ with app.app_context():
         )
         activities.append(a)
     db.session.add_all(activities)
+
+    hotels = []
+    for p in travellers:
+        for i in range (10):
+            r = Hotel(
+                name =fake.name(),
+                address =fake.address(),
+                traveller = p,
+                activity = rc(activities),)
+        hotels.append(r)
+    db.session.add_all(hotels)
+
+
+    for a in activities:
+        r = rc(hotels)
+        a.hotel = r
+        hotels.remove(r)
     db.session.commit()
