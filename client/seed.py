@@ -9,6 +9,23 @@ from app import app
 
 from models import db, Hotel, Traveller, Activity 
 
+exploits = [
+    "Beach Visiting",
+    "Swimming",
+    "Amusement walk",
+    "Horseback riding",
+    "zip lining",
+    "museum visiting",
+    "Gallery visit",
+    "Golf games",
+    "Adult scavenger hunt",
+    "Bowling",
+    "Dancing classes",
+    "Open mic Night",
+    "Camping",
+    "Hitting the Gym",
+]
+
 fake = Faker()
 
 with app.app_context():
@@ -35,9 +52,9 @@ with app.app_context():
     db.session.add_all(travellers)
 
     activities = []
-    for i in range (10):
+    for i in range (14):
         a = Activity(
-            name = fake.name(),
+            exploit = rc(exploits),
             description = fake.sentence(),
             time = fake.time(),
 

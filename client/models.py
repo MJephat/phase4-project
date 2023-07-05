@@ -20,8 +20,9 @@ class Hotel(db.Model, SerializerMixin):
     address = db.Column(db.String(100), nullable=False)
     traveller_id = db.Column(db.Integer, db.ForeignKey('travellers.id'))
     activity_id = db.Column(db.Integer, db.ForeignKey('activities.id'))
+
     created_at = db.Column(db.DateTime, server_default=db.func.now())
-    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
+    # updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     
     
@@ -37,7 +38,7 @@ class Traveller(db.Model, SerializerMixin):
     date = db.Column(db.String(20))
 
     created_at = db.Column(db.DateTime, server_default=db.func.now())
-    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
+    # updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     hotels = db.relationship('Hotel', backref='traveller')
 
@@ -47,12 +48,12 @@ class Activity(db.Model, SerializerMixin):
     serialize_rules = ('-hotels.activity',)
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
+    exploit = db.Column(db.String(100))
     description = db.Column(db.String(100))
     time = db.Column(db.String(50))
 
     created_at = db.Column(db.DateTime, server_default=db.func.now())
-    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
+    # updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     hotels = db.relationship('Hotel', backref='activity')
     

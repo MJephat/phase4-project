@@ -52,6 +52,28 @@ def hotel_by_id(id):
 
     return response
 
+@app.route('/hotels', methods=['POST'])
+def post_hotels():
+    if request.method == 'POST':
+        new_hotel = Hotel(
+            name=request.form.get("name"),
+            address=request.form.get("address"),
+            traveller_id=request.form.get("traveller_id"),
+            activity_id=request.form.get("activity_id"),
+        )
+
+    db.session.add(new_hotel)
+    db.session.commit()
+
+    hotel_dict = new_hotel.to_dict()
+
+    response = make_response(
+        jsonify(hotel_dict),
+        201
+    )
+
+    return response
+
 
 @app.route('/travellers')
 def travellers():
@@ -70,6 +92,7 @@ def travellers():
         200
     )
     return response
+
 
 
 @app.route('/travellers/<int:id>', methods=[  'PATCH', 'DELETE'])
@@ -118,6 +141,24 @@ def traveller_by_id(id):
             )
 
             return response
+
+@app.route('/activities')
+def activities():
+
+    activities =  []
+    for activity in   Activity.query.all():
+        activity_dict = {
+            "id": activity.id,
+            "exploit": activity.exploit,
+            "description": activity.description,
+            "time": activity.time
+        }
+        activities.append(activity_dict)
+    response =make_response(
+        jsonify(activities),
+        200
+    )
+    return response
 
 
 if __name__ == '__main__':
