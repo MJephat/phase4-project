@@ -53,6 +53,46 @@ def hotel_by_id(id):
 
     return response
 
+@app.route('/hotels/<int:id', methods=['GET', 'DELETE'])
+def delete_hotel(id):
+    if request.method == 'GET':
+        #Handle GET request if needed
+        hotel = Hotel.query.get(id)
+        if hotel is None:
+            response_body = {
+                "message": "Hotel not found"
+            }
+            return make_response(jsonify(response_body), 404)
+        
+        hotel_dict = {
+            "id": hotel.id,
+            "name": hotel.name,
+            "address": hotel.address,
+        }
+
+        response = make_response(
+            jsonify(hotel_dict),
+            200
+        )
+        return response
+    
+    elif request.method == 'DELETE':
+        hotel = Hotel.query.get(id)
+        if hotel is None:
+            response_body = {
+                "message": "Hotel not found"
+            }
+            return make_response(jsonify(response_body), 404)
+        
+        db.session.delete(hotel)
+        db.session.commit()
+
+        response_body = {
+            "message": "Hotel deleted"
+        }
+        return make_response(jsonify(response_body), 200)
+
+
 @app.route('/hotels', methods=['POST'])
 def post_hotels():
     if request.method == 'POST':
@@ -164,3 +204,6 @@ def activities():
 
 if __name__ == '__main__':
      app.run(port=5555)
+
+
+

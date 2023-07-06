@@ -5,7 +5,7 @@ function Menu() {
   const [hotels, setHotels] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/hotels")
+    fetch("http://127.0.0.1:5555/hotels")
       .then((r) => r.json())
       .then(hotels => setHotels(hotels));
       
@@ -13,17 +13,19 @@ function Menu() {
   console.log(setHotels);
   
 
-  function handleDelete(id) {
-    fetch(`http://127.0.0.1:5000/hotels/${id} `, {
-      method: "DELETE",
-    }).then((r) => {
-      if (r.ok) {
-        setHotels((hotels) =>
-          hotels.filter((hotel) => hotel.id !== id)
-        );
-      }
-    });
-  }
+function handleDelete(id){
+  fetch(`http://127.0.0.1:5555/hotels/${id}`,{
+    method:'DELETE',
+  })
+  .then((r) => {
+    if(r.ok){
+      setHotels((hotels) => hotels.filter((hotel) => hotel.id !== id));
+    }
+  })
+  .catch((error) => {
+    console.log("Error deleteing hotel:", error);
+  });
+}
 
   return (
     <section className="container">
@@ -41,3 +43,5 @@ function Menu() {
 }
 
 export default Menu;
+
+

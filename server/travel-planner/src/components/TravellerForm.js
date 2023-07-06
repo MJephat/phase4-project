@@ -7,7 +7,7 @@ function TravellerForm({ onAddTraveller }) {
   const [formErrors, setFormErrors] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/travellers")
+    fetch("http://127.0.0.1:5555/travellers")
       .then((r) => r.json())
       .then(setTravellers);
   }, []);
@@ -19,7 +19,7 @@ function TravellerForm({ onAddTraveller }) {
       gender: gender,
     };
 
-    fetch("http://127.0.0.1:5000/hotel", {
+    fetch("http://127.0.0.1:5555/hotel", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
