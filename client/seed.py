@@ -64,12 +64,13 @@ with app.app_context():
 
     hotels = []
     for p in travellers:
-        for i in range (10):
+        for i in range (60):
             r = Hotel(
                 name =fake.name(),
                 address =fake.address(),
                 traveller = p,
-                activity = rc(activities),)
+                activity = rc(activities),
+                )
         hotels.append(r)
     db.session.add_all(hotels)
 
