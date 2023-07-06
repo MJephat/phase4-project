@@ -66,38 +66,124 @@
 // export default HOTEL;
 
 
+// import React, { useEffect, useState } from 'react';
+// import Modal from 'react-modal';
+
+// Modal.setAppElement('#root');
+
+// function Body() {
+//   const [hotels, setHotels] = useState([]);  useEffect(() => {
+//       fetchHotels();
+//   }, []);  const fetchHotels = async () => {
+//       try {
+//       const response = await fetch('http://127.0.0.1:5555/hotels');
+//       const data = await response.json();
+//       setHotels(data);
+//       } catch (error) {
+//       console.log('Error fetching hotels:', error);
+//       }
+//   };
+  
+//   const bookAppointment = (hotelId) => {
+//     console.log('Book appointment for hotel with ID:', hotelId);
+//   };
+  
+//   return ( 
+//       <div className="services-container">
+//       {/* <div>
+//           <h1>Services</h1>
+//       </div> */}
+      
+//       <br></br>
+//       <br></br>
+//       <br></br>
+//       {hotels.map((hotel) => (
+//           <div className="service-card" key={hotel.id}>
+//           <img className="service-image" src={hotel.image_url} alt={hotel.name} />
+//           <h3>{hotel.name}</h3>
+//           <p>{hotel.address}</p>
+//           {/* <p>Price: ${service.price}</p> */}
+//           <button onClick={() => bookAppointment(hotel.id)}>BOOK APPOINTMENT </button>
+//           </div>
+//       ))}
+//       </div>
+//   );
+// }export default Body;
+
 import React, { useEffect, useState } from 'react';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
+
 function Body() {
-  const [hotels, setHotels] = useState([]);  useEffect(() => {
-      fetchHotels();
-  }, []);  const fetchHotels = async () => {
-      try {
-      const response = await fetch('http://localhost:5000/hotels');
+  const [hotels, setHotels] = useState([]);
+  const [selectedHotel, setSelectedHotel] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    fetchHotels();
+  }, []);
+
+  const fetchHotels = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:5555/hotels');
       const data = await response.json();
       setHotels(data);
-      } catch (error) {
+    } catch (error) {
       console.log('Error fetching hotels:', error);
-      }
-  };  
-  
-  return ( 
-      <div className="services-container">
+    }
+  };
+
+  const openModal = (hotel) => {
+    setSelectedHotel(hotel);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const bookAppointment = (hotelId) => {
+    // Handle the booking logic here
+    console.log('Book appointment for hotel with ID:', hotelId);
+    closeModal();
+  };
+
+  return (
+    <div className="services-container">
       {/* <div>
-          <h1>Services</h1>
+        <h1>Services</h1>
       </div> */}
-      
-      <br></br>
-      <br></br>
-      <br></br>
+
+      <br />
+      <br />
+      <br />
       {hotels.map((hotel) => (
-          <div className="service-card" key={hotel.id}>
+        <div className="service-card" key={hotel.id}>
           <img className="service-image" src={hotel.image_url} alt={hotel.name} />
           <h3>{hotel.name}</h3>
           <p>{hotel.address}</p>
-          {/* <p>Price: ${service.price}</p> */}
-          <button>BOOK APPOINTMENT </button>
-          </div>
+          <button onClick={() => openModal(hotel)}>BOOK APPOINTMENT</button>
+        </div>
       ))}
-      </div>
+
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Book Appointment"
+      >
+        {selectedHotel && (
+          <div>
+            <h2>Book Appointment</h2>
+            <p>Hotel: {selectedHotel.name}</p>
+            <p>Address: {selectedHotel.address}</p>
+            <button onClick={() => bookAppointment(selectedHotel.id)}>Confirm Booking</button>
+            <button onClick={closeModal}>Cancel</button>
+          </div>
+        )}
+      </Modal>
+    </div>
   );
-}export default Body;
+}
+
+export default Body;
