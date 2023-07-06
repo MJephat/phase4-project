@@ -17,6 +17,7 @@ class Hotel(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
+    image_url = db.Column(db.String(255))
     address = db.Column(db.String(100), nullable=False)
     traveller_id = db.Column(db.Integer, db.ForeignKey('travellers.id'))
     activity_id = db.Column(db.Integer, db.ForeignKey('activities.id'))

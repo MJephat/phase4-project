@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Footer(){
+function Contact(){
     return(
         <div class="contact-box">
             <div class='contact-left'>
@@ -53,4 +53,4 @@ function Footer(){
     );
 }
 
-export default Footer;
+export default Contact;

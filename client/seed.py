@@ -67,6 +67,7 @@ with app.app_context():
         for i in range (60):
             r = Hotel(
                 name =fake.name(),
+                image_url = fake.image_url(),
                 address =fake.address(),
                 traveller = p,
                 activity = rc(activities),
