@@ -3,10 +3,12 @@ import Navbar from "./components/Navbar.js";
 import Services from "./components/Services.js";
 import About from "./components/About.js";
 import Body from "./components/Hotel.js";
-// import Footer from './components/Footer';
+import Footer from './components/Footer/footer';
 import Header from './components/Header';
+import TravellerForm from "./components/TravellerForm.js";
 import './App.css';
-import Contact from "./components/Footer";
+import Contact from "./components/Contact.js";
+import Menu from "./components/Places.js";
 
 function App() {
   return (
@@ -20,10 +22,12 @@ function App() {
         <Route path='/services' element={<Services />} />
         <Route path='/body' element ={<Body />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='/travellerform' element={<TravellerForm />} />
+        <Route path='/menu' element={<Menu />} />
       
       </Routes>
       
-      {/* <Footer /> */}
+      <Footer />
       
     </Router>
   );

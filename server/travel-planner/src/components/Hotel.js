@@ -78,7 +78,9 @@ function Body() {
       } catch (error) {
       console.log('Error fetching hotels:', error);
       }
-  };  return ( 
+  };  
+  
+  return ( 
       <div className="services-container">
       {/* <div>
           <h1>Services</h1>
