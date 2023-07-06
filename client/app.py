@@ -53,7 +53,7 @@ def hotel_by_id(id):
 
     return response
 
-@app.route('/hotels', methods=['POST'])
+@app.route('/hotels', methods=['POST','DELETE','PATCH'])
 def post_hotels():
     if request.method == 'POST':
         new_hotel = Hotel(
@@ -63,18 +63,40 @@ def post_hotels():
             activity_id=request.form.get("activity_id"),
         )
 
-    db.session.add(new_hotel)
-    db.session.commit()
+        db.session.add(new_hotel)
+        db.session.commit()
 
-    hotel_dict = new_hotel.to_dict()
+        hotel_dict = new_hotel.to_dict()
 
-    response = make_response(
-        jsonify(hotel_dict),
-        201
-    )
+        response = make_response(
+            jsonify(hotel_dict),
+            201
+        )
 
-    return response
+        return response
 
+
+@app.route('/travellers', methods=['POST','DELETE','PATCH'])
+def post_travellers1():
+    if request.method == 'POST':
+        new_traveller = Traveller(
+            name=request.form.get("name"),
+            gender=request.form.get("gender"),
+            email=request.form.get("email"),
+            date=request.form.get("date"),
+        )
+
+        db.session.add(new_traveller)
+        db.session.commit()
+
+        traveller_dict = new_traveller.to_dict()
+
+        response = make_response(
+            jsonify(traveller_dict),
+            201
+        )
+
+        return response
 
 @app.route('/travellers')
 def travellers():

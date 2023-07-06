@@ -9,6 +9,7 @@ import TravellerForm from "./components/TravellerForm.js";
 import './App.css';
 import Contact from "./components/Contact.js";
 import Menu from "./components/Places.js";
+import Test from "./components/Test.js";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/travellerform' element={<TravellerForm />} />
         <Route path='/menu' element={<Menu />} />
+        <Route path='/test' element={<Test />} />
       
       </Routes>
       

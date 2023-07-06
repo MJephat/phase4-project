@@ -19,7 +19,7 @@ function TravellerForm({ onAddTraveller }) {
       gender: gender,
     };
 
-    fetch("http://127.0.0.1:5000/hotel", {
+    fetch("http://127.0.0.1:5000/travellers", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ function TravellerForm({ onAddTraveller }) {
       <label htmlFor="traveller_id">Traveller:</label>
       <select
         id="traveller_id"
-        name="traveller_id"
+        name="traveller_name"
         value={travellerId}
         onChange={(e) => setTravellerId(e.target.value)}
       >

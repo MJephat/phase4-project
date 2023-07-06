@@ -13,6 +13,7 @@ function Navbar(){
       <Link to="/contact">contact</Link>
       <Link to="travellerform">travellerform</Link>
       <Link to="/menu">menu</Link>
+      <Link to="/test">test</Link>
 
   </nav>
   );

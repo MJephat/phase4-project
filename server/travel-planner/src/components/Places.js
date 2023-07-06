@@ -2,24 +2,24 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function Menu() {
-  const [hotels, setHotels] = useState([]);
+  const [travellers, setTravellers] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/hotels")
+    fetch("http://127.0.0.1:5000/travellers")
       .then((r) => r.json())
-      .then(hotels => setHotels(hotels));
+      .then(travellers => setTravellers(travellers));
       
   }, []);
-  console.log(setHotels);
+  console.log(setTravellers);
   
 
-  function handleDelete(id) {
-    fetch(`http://127.0.0.1:5000/hotels/${id} `, {
+function handleDelete(id) {
+    fetch(`http://127.0.0.1:5000/Travellers/${id} `, {
       method: "DELETE",
     }).then((r) => {
       if (r.ok) {
-        setHotels((hotels) =>
-          hotels.filter((hotel) => hotel.id !== id)
+        setTravellers((travellers) =>
+          travellers.filter((traveller) => traveller.id !== id)
         );
       }
     });
@@ -27,13 +27,15 @@ function Menu() {
 
   return (
     <section className="container">
-      {hotels.map((hotel) => (
-        <div key={hotel.id} className="card">
+      {travellers.map((traveller) => ( 
+        <div key={traveller.id} className="card">
           <h2>
-            <Link to={`/hotels/${hotel.id}`}>{hotel.name}</Link>
+            <Link to={`/travellers/${traveller.id}`}>{traveller.name}</Link>
           </h2>
-          <p>Address: {hotel.address}</p>
-          <button onClick={() => handleDelete(hotel.id)}>Delete</button>
+          <p>id: {traveller.id}</p>
+          <p>gender: {traveller.gender}</p>
+          <p>date:{traveller.date}</p>
+          <button onClick={() => handleDelete(traveller.id)}>Delete</button>
         </div>
       ))}
     </section>
