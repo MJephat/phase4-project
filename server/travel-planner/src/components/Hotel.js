@@ -126,7 +126,7 @@ function Body() {
 
   const fetchHotels = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:5555/hotels');
+      const response = await fetch('http://127.0.0.1:5000/hotels');
       const data = await response.json();
       setHotels(data);
     } catch (error) {

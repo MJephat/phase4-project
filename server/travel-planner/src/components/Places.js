@@ -14,7 +14,7 @@ function Menu() {
   
 
 function handleDelete(id) {
-    fetch(`http://127.0.0.1:5000/Travellers/${id} `, {
+    fetch(`http://127.0.0.1:5000/travellers/${id} `, {
       method: "DELETE",
     }).then((r) => {
       if (r.ok) {

@@ -7,7 +7,7 @@ function TravellerForm({ onAddTraveller }) {
   const [formErrors, setFormErrors] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5555/travellers")
+    fetch("http://127.0.0.1:5000/travellers")
       .then((r) => r.json())
       .then(setTravellers);
   }, []);
