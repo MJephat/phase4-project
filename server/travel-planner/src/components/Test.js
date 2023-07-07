@@ -55,7 +55,7 @@ const Test = () => {
     <div>
       <h2>Add New Traveller</h2>
       <form onSubmit= {handleSubmit}>
-        <label htmlFor="name"> Name</label>
+        <label htmlFor="name"> name</label>
         <input type="text" name="name" value={formData.name} onChange={handleChange} required/>
 
         <label htmlFor="gender">gender</label>

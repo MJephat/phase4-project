@@ -9,7 +9,7 @@ from models import db, Hotel, Traveller, Activity
 
 
 app = Flask(__name__)
-cors = CORS(app)
+cor_s = CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
@@ -81,7 +81,7 @@ def post_travellers1():
     if request.method == 'POST':
         new_traveller = Traveller(
             name=request.form.get("name"),
-            gender=request.form.get("gender"),
+            # gender=request.form.get("gender"),
             email=request.form.get("email"),
             date=request.form.get("date"),
         )

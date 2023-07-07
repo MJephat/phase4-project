@@ -14,6 +14,7 @@ function Navbar(){
       <Link to="travellerform">travellerform</Link>
       <Link to="/menu">menu</Link>
       <Link to="/test">test</Link>
+      <Link to="/">Header</Link>
 
   </nav>
   );
