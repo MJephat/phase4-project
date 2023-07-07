@@ -163,6 +163,9 @@ function Body() {
           <img className="service-image" src={hotel.image_url} alt={hotel.name} />
           <h3>{hotel.name}</h3>
           <p>{hotel.address}</p>
+          <p>{hotel.traveller_id}</p>
+          <p>{hotel.activity_id}</p>
+          <p>{hotel.created_at}</p>
           <button onClick={() => openModal(hotel)}>BOOK APPOINTMENT</button>
         </div>
       ))}

@@ -6,10 +6,7 @@ const Test = () => {
     gender: '',
     email: '',
     date: ''
-    // description: '',
-    // responsibility: '',
-    // qualification: '',
-    // employer_id: ''
+  
   });
 
   const handleChange = (e) => {
@@ -36,11 +33,7 @@ const Test = () => {
           gender: '',
           email: '',
           date: '',
-          // created_at: new Date(),
-          // description: '',
-          // responsibility: '',
-          // qualification: '',
-          // employer_id: ''
+      
         });
 
       } else {
@@ -67,38 +60,6 @@ const Test = () => {
         <label htmlFor="date">date</label>
         <input type="date" name="date" value={formData.date} onChange={handleChange} required/>
 
-        {/* <label htmlFor="created_at">created_at</label>
-        <textarea
-          name="time"
-          value={formData.created_at}
-          onChange={handleChange}
-          required
-        ></textarea> */}
-
-        {/* <label htmlFor="responsibility">Responsibility</label>
-        <textarea
-          name="responsibility"
-          value={formData.responsibility}
-          onChange={handleChange}
-          required
-        ></textarea> */}
-
-        {/* <label htmlFor="qualification">Qualification</label>
-        <textarea
-          name="qualification"
-          value={formData.qualification}
-          onChange={handleChange}
-          required
-        ></textarea> */}
-
-        {/* <label htmlFor="employer_id">Employer ID</label>
-        <input
-          type="number"
-          name="employer_id"
-          value={formData.employer_id}
-          onChange={handleChange}
-          required
-        /> */}
 
         <button type="submit">Create Traveller</button>
       </form>

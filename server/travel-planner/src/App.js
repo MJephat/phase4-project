@@ -38,26 +38,3 @@ function App() {
 
 export default App;
 
-
-// import Navbar from './components/Navbar';
-// import Header from './components/Header';
-// import About from './components/About';
-// import Services from './components/Services';
-// import Footer from './components/Footer';
-// import './App.css';
-// import Body from './components/Hotel';
-
-// function App() {
-//   return (
-//     <div class='app'>
-//       <Navbar />
-//       <Header />
-//       <About />
-//       <Services />
-//       <Footer />
-//       <Body />
-//     </div>
-//   );
-// }
-
-// export default App;

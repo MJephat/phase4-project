@@ -3,7 +3,7 @@
 }
 
 .footer{
-    background-color:rgb(190, 241, 241)
+    background-color:white;
 }
 .sb_footer{
     display: flex;
@@ -28,7 +28,7 @@
     /* color: white; */
 }
 a{
-    color:rbg(175, 175, 175);
+    color:black;
     text-decoration:none;
 }
 .socialmedia{
@@ -75,7 +75,7 @@ a{
     font-weight: 600;
 }
 hr{
-    color: white !important;
+    color: black !important;
     width: 100%;
 }
 .sb_footer-copyright p{
