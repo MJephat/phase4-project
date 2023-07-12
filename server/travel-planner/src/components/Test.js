@@ -61,7 +61,7 @@ const Test = () => {
         <input type="date" name="date" value={formData.date} onChange={handleChange} required/>
 
 
-        <button type="submit">Create Traveller</button>
+        <button type="submit">POST</button>
       </form>
     </div>
   );

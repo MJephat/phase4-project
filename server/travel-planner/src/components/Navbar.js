@@ -11,7 +11,7 @@ function Navbar(){
       <Link to="/services">services</Link>
       <Link to="/body">Hotels</Link>
       <Link to="/contact">contact</Link>
-      <Link to="travellerform">travellerform</Link>
+      {/* <Link to="travellerform">travellerform</Link> */}
       <Link to="/menu">menu</Link>
       <Link to="/test">Add Traveller</Link>
       <Link to="/">Home</Link>

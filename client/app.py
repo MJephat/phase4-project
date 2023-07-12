@@ -86,7 +86,7 @@ def post_travellers1():
             date=request.form.get("date"),
         )
 
-        db.session.add(new_traveller)
+        # db.session.add(new_traveller)
         db.session.commit()
 
         traveller_dict = new_traveller.to_dict()
